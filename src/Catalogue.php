@@ -4,19 +4,7 @@ namespace Bezdomni\IsaacRebirth;
 
 class Catalogue
 {
-    private $characters = [
-        1 => "Isaac",
-        2 => "Maggie",
-        3 => "Cain",
-        4 => "Judas",
-        5 => "???",
-        6 => "Eve",
-        7 => "Samson",
-        8 => "Azazel",
-        9 => "Lazarus",
-        10 => "Eden",
-        11 => "Lost",
-    ];
+    private $characters = [];
 
     private $challenges = [
         1 => "Pitch Black",
@@ -827,28 +815,42 @@ class Catalogue
         178 => "Become Lord of the Flies",
     ];
 
-    private $endings = [
-        1 => "Intro",
-        2 => "Credits",
-        3 => "Epilogue",
-        4 => "Womb (Eden)",
-        5 => "Womb (Rubber Cement)",
-        6 => "Womb (Noose)",
-        7 => "Womb (Wire Coat Hanger)",
-        8 => "Womb (Everything is Terrible)",
-        9 => "Womb (Ipecac)",
-        10 => "Womb (Experimental Treatment)",
-        11 => "Womb (A Quarter)",
-        12 => "Womb (Dr. Fetus)",
-        13 => "Womb (???)",
-        14 => "Womb (It Lives!)",
-        15 => "Sheol",
-        16 => "Cathedral",
-        17 => "Chest",
-        18 => "Dark Room",
-        19 => "Mega Satan",
-    ];
+    private $endings = [];
 
+    public function __construct($header = "ISAACNG06R")
+    {
+        switch ($header)
+        {
+            case "ISAACNG08R":
+                $this->load('afterbirth');
+                break;
+            case "ISAACNG06R":
+            default:
+                $this->load('rebirth');
+        }
+    }
+
+    public function load($version)
+    {
+        $raw = file_get_contents(__DIR__."/../data/catalogue-$version.json");
+        $json = json_decode($raw, true);
+        if ($json === null)
+        {
+            throw new \Exception(json_last_error_msg());
+        }
+        $this->characters = $json['characters']['items'];
+        $this->endings = $json['endings']['items'];
+        $this->stats = $json['stats'];
+        /* TODO
+        $this->challenges = $json['challenges']['items'];
+        $this->achievements = $json['achievements']['items'];
+        $this->achievementHints = $json['achievements']['hints'];
+        $this->bosses = $json['bosses']['items'];
+        $this->miniBosses = $json['mini-bosses']['items'];
+        $this->items = $json['items']['items'];
+        $this->progresses = $json['progress']['items'];
+         */
+    }
     // -- Getters --------------------------------------------------------------
 
     public function achievements()
@@ -894,6 +896,11 @@ class Catalogue
     public function progresses()
     {
         return $this->progresses;
+    }
+
+    public function stats()
+    {
+        return $this->stats;
     }
 
     // -- Getters (single) -----------------------------------------------------

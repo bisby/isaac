@@ -67,10 +67,10 @@ class Controller
 
         // Check header
         $header = substr($data, 0, 14);
-        if ($header !== 'ISAACNGSAVE06R') {
+        if (!in_array($header, ['ISAACNGSAVE06R', 'ISAACNGSAVE08R'])) {
             throw new BadRequestHttpException(
                 "Invalid file header. A savegame file should start with the
-                string `ISAACNGSAVE06R`.\n\nYou either uploaded a file wich is
+                string `ISAACNGSAVEXXR`.\n\nYou either uploaded a file wich is
                 not a BOIR savegame, or the savegame version is not supported."
             );
         }

@@ -1,0 +1,99 @@
+{
+	"characters":{
+		"items":[
+			"Isaac", "Maggie", "Cain",
+			"Judas", "???", "Eve",
+			"Samson", "Azazel", "Lazarus",
+			"Eden", "Lost"
+		]
+	},
+	"challenges":{
+		"offset":1123,
+		"items":[
+			"Pitch Black",
+			"High Brow",
+			"Head Trauma"
+		]
+	],
+	"bosses":{
+		"offset":1054,
+		"items":[]
+	},
+	"mini-bosses":{
+		"offset":1035,
+		"items":[]
+	},
+	"items":{
+		"offset":676,
+		"items":[]
+	},
+	"progress":{
+		"offset":327,
+		"items":[]
+	},
+	"achievements":{
+		"offset":33,
+		"items":[]
+	},
+	"endings":{
+		"items":[
+			"Intro",
+			"Credits",
+			"Epilogue",
+			"Womb (Eden)",
+			"Womb (Rubber Cement)",
+			"Womb (Noose)",
+			"Womb (Wire Coat Hanger)",
+			"Womb (Everything is Terrible)",
+			"Womb (Ipecac)",
+			"Womb (Experimental Treatment)",
+			"Womb (A Quarter)",
+			"Womb (Dr. Fetus)",
+			"Womb (???)",
+			"Womb (It Lives!)",
+			"Sheol",
+			"Cathedral",
+			"Chest",
+			"Dark Room",
+			"Mega Satan"
+		]
+	},
+	"stats":{
+		'mom_kills':227,
+		'rocks':231,
+		'marked_rocks':235,
+		'poops':239,
+		'pills':243,
+		'death_card_uses':247,
+		'arcades_entered':255,
+		'deaths':259,
+		'isaac_kills':263,
+		'shopkeepers_exploded':267,
+		'satan_kills':271,
+		'shell_game_played':275,
+		'angel_deals':279,
+		'devil_deals':283,
+		'blood_donated':287,
+		'arcades_exploded':291,
+		'lost_unlock':295,
+		'coins_donated':299,
+		'eden_tokens':303,
+		'win_streak':307,
+		'best_streak':311,
+		'blue_baby_kills':315,
+		'lamb_kills':319,
+		'boss_rush_wins':591,
+		'loss_streak':599,
+		'boss_kills_01':619,
+		'boss_kills_02':623,
+		'boss_kills_03':627,
+		'boss_kills_04':631,
+		'boss_kills_05':635,
+		'boss_kills_06':639,
+		'boss_kills_07':643,
+		'boss_kills_08':647,
+		'boss_kills_09':651,
+		'boss_kills_10':659,
+		'win_count':1163
+	}
+}
