@@ -4,14 +4,6 @@ namespace Bezdomni\IsaacRebirth;
 
 class SaveGame
 {
-    // Offsets for ranges
-    const ACHIEVEMENTS = 33;
-    const PROGRESS = 327;
-    const ITEMS = 676;
-    const MINI_BOSSES = 1035;
-    const BOSSES = 1054;
-    const CHALLENGES = 1123;
-
     private $data;
 
     private $catalogue;
@@ -52,13 +44,13 @@ class SaveGame
 
     public function boss($bossID)
     {
-        $offset = self::BOSSES + $bossID - 1;
+        $offset = $this->catalogue->offsets('bosses') + $bossID - 1;
         return $this->getChar($offset);
     }
 
     public function item($itemID)
     {
-        $offset = self::ITEMS + $itemID - 1;
+        $offset = $this->catalogue->offsets('items') + $itemID - 1;
         return $this->getChar($offset);
     }
 
@@ -67,31 +59,31 @@ class SaveGame
     public function achievements()
     {
         $catalogue = $this->catalogue->achievements();
-        return $this->many($catalogue, self::ACHIEVEMENTS);
+        return $this->many($catalogue, $this->catalogue->offsets('achievements'));
     }
 
     public function bosses()
     {
         $catalogue = $this->catalogue->bosses();
-        return $this->many($catalogue, self::BOSSES);
+        return $this->many($catalogue, $this->catalogue->offsets('bosses'));
     }
 
     public function challenges()
     {
         $catalogue = $this->catalogue->challenges();
-        return $this->many($catalogue, self::CHALLENGES);
+        return $this->many($catalogue, $this->catalogue->offsets('challenges'));
     }
 
     public function items()
     {
         $catalogue = $this->catalogue->items();
-        return $this->many($catalogue, self::ITEMS);
+        return $this->many($catalogue, $this->catalogue->offsets('items'));
     }
 
     public function miniBosses()
     {
         $catalogue = $this->catalogue->miniBosses();
-        return $this->many($catalogue, self::MINI_BOSSES);
+        return $this->many($catalogue, $this->catalogue->offsets('mini_bosses'));
     }
 
     public function progress()
@@ -99,7 +91,7 @@ class SaveGame
         $characters = $this->catalogue->characters();
         $progresses = $this->catalogue->progresses();
 
-        $offset = self::PROGRESS;
+        $offset = $this->catalogue->offsets('progress');
         $return = [];
         foreach ($progresses as $pid => $progress) {
             foreach ($characters as $cid => $character) {

@@ -4,39 +4,13 @@ namespace Bezdomni\IsaacRebirth;
 
 class Catalogue
 {
+    private $offsets = [];
+
     private $characters = [];
 
-    private $challenges = [
-        1 => "Pitch Black",
-        2 => "High Brow",
-        3 => "Head Trauma",
-        4 => "Darkness Falls",
-        5 => "The Tank",
-        6 => "Solar System",
-        7 => "Suicide King",
-        8 => "Cat Got Your Tongue",
-        9 => "Demo Man",
-        10 => "Cursed!",
-        11 => "Glass Cannon",
-        12 => "When Life Gives You Lemons",
-        13 => "BEANS!",
-        14 => "Its In The Cards",
-        15 => "Slow Roll",
-        16 => "Computer Savy",
-        17 => "WAKA WAKA",
-        18 => "The Host",
-        19 => "The Family Man",
-        20 => "Purist",
-    ];
+    private $challenges = [];
 
-    private $progresses = [
-        1 => "Mom's Heart",
-        2 => "Isaac",
-        3 => "Satan",
-        4 => "Boss Rush",
-        5 => "???",
-        6 => "The Lamb"
-    ];
+    private $progresses = [];
 
     private $items = [
         1 =>  "The Sad Onion",
@@ -836,20 +810,28 @@ class Catalogue
         $json = json_decode($raw, true);
         if ($json === null)
         {
-            throw new \Exception(json_last_error_msg());
+            throw new \Exception("Catalogue parse error: ".json_last_error_msg());
         }
         $this->characters = $json['characters']['items'];
         $this->endings = $json['endings']['items'];
         $this->stats = $json['stats'];
-        /* TODO
         $this->challenges = $json['challenges']['items'];
+        /* TODO
         $this->achievements = $json['achievements']['items'];
         $this->achievementHints = $json['achievements']['hints'];
         $this->bosses = $json['bosses']['items'];
         $this->miniBosses = $json['mini-bosses']['items'];
         $this->items = $json['items']['items'];
-        $this->progresses = $json['progress']['items'];
          */
+        $this->progresses = $json['progress']['items'];
+        $this->offsets = [
+            'achievements' => $json['achievements']['offset'],
+            'progress'     => $json['progress']['offset'],
+            'items'        => $json['items']['offset'],
+            'mini_bosses'  => $json['mini-bosses']['offset'],
+            'bosses'       => $json['bosses']['offset'],
+            'challenges'   => $json['challengess']['offset']
+        ];
     }
     // -- Getters --------------------------------------------------------------
 
@@ -938,5 +920,10 @@ class Catalogue
     public function progress($id)
     {
         return isset($this->progresses[$id]) ? $this->progresses[$id] : null;
+    }
+
+    public function offset($name)
+    {
+        return isset($this->offsets[$name]) ? $this->offsets[$name] : null;
     }
 }

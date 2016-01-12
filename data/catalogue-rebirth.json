@@ -12,7 +12,24 @@
 		"items":[
 			"Pitch Black",
 			"High Brow",
-			"Head Trauma"
+			"Head Trauma",
+			"Darkness Falls",
+			"The Tank",
+			"Solar System",
+			"Suicide King",
+			"Cat Got Your Tongue",
+			"Demo Man",
+			"Cursed!",
+			"Glass Cannon",
+			"When Life Gives You Lemons",
+			"BEANS!",
+			"Its In The Cards",
+			"Slow Roll",
+			"Computer Savy",
+			"WAKA WAKA",
+			"The Host",
+			"The Family Man",
+			"Purist"
 		]
 	],
 	"bosses":{
@@ -29,7 +46,14 @@
 	},
 	"progress":{
 		"offset":327,
-		"items":[]
+		"items":[
+			"Mom's Heart",
+			"Isaac",
+			"Satan",
+			"Boss Rush",
+			"???",
+			"The Lamb"
+		]
 	},
 	"achievements":{
 		"offset":33,
