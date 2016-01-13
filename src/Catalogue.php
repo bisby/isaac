@@ -61,7 +61,7 @@ class Catalogue
             'items'        => $json['items']['offset'],
             'mini_bosses'  => $json['mini-bosses']['offset'],
             'bosses'       => $json['bosses']['offset'],
-            'challenges'   => $json['challengess']['offset']
+            'challenges'   => $json['challenges']['offset']
         ];
     }
     // -- Getters --------------------------------------------------------------
