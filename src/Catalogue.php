@@ -24,14 +24,14 @@ class Catalogue
 
     private $endings = [];
 
-    public function __construct($header = "ISAACNG06R")
+    public function __construct($header = "")
     {
-        switch ($header)
+        switch (trim($header))
         {
-            case "ISAACNG08R":
+            case "ISAACNGSAVE08R":
                 $this->load('afterbirth');
                 break;
-            case "ISAACNG06R":
+            case "ISAACNGSAVE06R":
             default:
                 $this->load('rebirth');
         }

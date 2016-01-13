@@ -11,7 +11,8 @@ class SaveGame
     public function __construct($data)
     {
         $this->data = $data;
-        $this->catalogue = new Catalogue();
+        $header = substr($data, 0, 15);
+        $this->catalogue = new Catalogue($header);
     }
 
     public static function load($path)
