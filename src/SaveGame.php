@@ -11,7 +11,7 @@ class SaveGame
     public function __construct($data)
     {
         $this->data = $data;
-        $header = substr($data, 0, 15);
+        $header = substr($data, 0, 14);
         $this->catalogue = new Catalogue($header);
     }
 
@@ -45,13 +45,13 @@ class SaveGame
 
     public function boss($bossID)
     {
-        $offset = $this->catalogue->offsets('bosses') + $bossID - 1;
+        $offset = $this->catalogue->offset('bosses') + $bossID;
         return $this->getChar($offset);
     }
 
     public function item($itemID)
     {
-        $offset = $this->catalogue->offsets('items') + $itemID - 1;
+        $offset = $this->catalogue->offset('items') + $itemID;
         return $this->getChar($offset);
     }
 
@@ -60,31 +60,31 @@ class SaveGame
     public function achievements()
     {
         $catalogue = $this->catalogue->achievements();
-        return $this->many($catalogue, $this->catalogue->offsets('achievements'));
+        return $this->many($catalogue, $this->catalogue->offset('achievements'));
     }
 
     public function bosses()
     {
         $catalogue = $this->catalogue->bosses();
-        return $this->many($catalogue, $this->catalogue->offsets('bosses'));
+        return $this->many($catalogue, $this->catalogue->offset('bosses'));
     }
 
     public function challenges()
     {
         $catalogue = $this->catalogue->challenges();
-        return $this->many($catalogue, $this->catalogue->offsets('challenges'));
+        return $this->many($catalogue, $this->catalogue->offset('challenges'));
     }
 
     public function items()
     {
         $catalogue = $this->catalogue->items();
-        return $this->many($catalogue, $this->catalogue->offsets('items'));
+        return $this->many($catalogue, $this->catalogue->offset('items'));
     }
 
     public function miniBosses()
     {
         $catalogue = $this->catalogue->miniBosses();
-        return $this->many($catalogue, $this->catalogue->offsets('mini_bosses'));
+        return $this->many($catalogue, $this->catalogue->offset('mini_bosses'));
     }
 
     public function progress()
@@ -92,7 +92,7 @@ class SaveGame
         $characters = $this->catalogue->characters();
         $progresses = $this->catalogue->progresses();
 
-        $offset = $this->catalogue->offsets('progress');
+        $offset = $this->catalogue->offset('progress');
         $return = [];
         foreach ($progresses as $pid => $progress) {
             foreach ($characters as $cid => $character) {
@@ -108,7 +108,7 @@ class SaveGame
     public function many($catalogue, $startOffset)
     {
         foreach ($catalogue as $id => $name) {
-            $offset = $startOffset + $id - 1;
+            $offset = $startOffset + $id;
             $catalogue[$id] = $this->getChar($offset);
         }
 
